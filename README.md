@@ -25,12 +25,14 @@ Create, Read, Update, Delete profiles.
 
 
 
+
 Users
 add thier personal informations
 View lawers profiles.
 search for lawerss by contract.
 Edit thier profile.
-
+request a consultation
+pay for consultations
 
 
 lawers
@@ -38,3 +40,4 @@ lawers
 add thir contract specialities like ral eastes,company management,etc.. .
 add the price of consoltation.
 add years of experience
+replay to consultation requests
