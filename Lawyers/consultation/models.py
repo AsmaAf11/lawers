@@ -19,10 +19,8 @@ class consultation_request(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     consultation = models.ForeignKey(consultation, on_delete=models.CASCADE)
     content = models.TextField()
-    replay = models.TextField()
 
 
-class payment(models.Model):
+class consultation_replay(models.Model):
     consultation_request = models.ForeignKey(consultation_request, on_delete=models.CASCADE)
-    is_payed = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
+    replay = models.TextField()
