@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import lawyer, consultation, consultation_request, payment
+from .models import lawyer, consultation, consultation_request, consultation_replay
 from django.contrib.auth.models import User
 
 
@@ -36,7 +36,7 @@ class consultation_requestSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class paymentSerializer(serializers.ModelSerializer):
+class consultation_replaySerializer(serializers.ModelSerializer):
     class Meta:
-        model = payment
+        model = consultation_replay
         fields = '__all__'

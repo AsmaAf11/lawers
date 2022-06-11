@@ -9,8 +9,9 @@ urlpatterns = [
     path("list_lawyers", views.list_lawyers, name="list_lawyers"),
     path("delete_lawyer", views.delete_lawyer, name="delete_lawyer"),
     path("add_consultation", views.add_consultation, name="add_consultation"),
+    path("request_consultation", views.request_consultation, name="request_consultation"),
     path("list_consultation", views.list_consultation, name="list_consultation"),
     path("delete_consultation/<consultation_id>/", views.delete_consultation, name="delete_consultation"),
     path("search_for_lawyers", views.search_for_lawyers, name="search_for_lawyers"),
-    path("payment", views.payment, name="payment"),
+
 ]

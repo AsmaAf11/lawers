@@ -118,6 +118,52 @@ def delete_consultation(request: Request, consultation_id):
     return Response({"msg": "Deleted Successfully"})
 
 
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+@authentication_classes([JWTAuthentication])
+def request_consultation(request: Request, consultation_id):
+    if not request.user.is_authenticated or not request.user.has_perm('consultation_request.add_consultation_request'):
+        return Response({"msg": "Not Allowed"}, status=status.HTTP_401_UNAUTHORIZED)
+
+    request.data.update(user=request.user.id)
+
+    consultationRequest = consultation_requestSerializer(data=request.data)
+    if consultationRequest.is_valid():
+        consultationRequest.save()
+        dataResponse = {
+            "msg": "Created Successfully",
+            "consultation request": consultationRequest.data
+        }
+        return Response(dataResponse)
+    else:
+        print(consultationRequest.errors)
+        dataResponse = {"msg": "couldn't request a consult"}
+        return Response(dataResponse, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+@authentication_classes([JWTAuthentication])
+def replay_consultation(request: Request, consultation_request_id):
+    if not request.user.is_authenticated or not request.user.has_perm('consultation_replay.add_consultation_replay'):
+        return Response({"msg": "Not Allowed"}, status=status.HTTP_401_UNAUTHORIZED)
+
+    request.data.update(user=request.user.id)
+
+    consultationReplay = consultation_replaySerializer(data=request.data)
+    if consultationReplay.is_valid():
+        consultationReplay.save()
+        dataResponse = {
+            "msg": "Created Successfully",
+            "consultation replay": consultationReplay.data
+        }
+        return Response(dataResponse)
+    else:
+        print(consultationReplay.errors)
+        dataResponse = {"msg": "couldn't replay"}
+        return Response(dataResponse, status=status.HTTP_400_BAD_REQUEST)
+
+
 @api_view(['GET'])
 def search_for_lawyers(request: Request):
     if 'search' in request.query_params:
@@ -132,8 +178,3 @@ def search_for_lawyers(request: Request):
     }
 
     return Response(responseData)
-
-
-@api_view(['POST'])
-def payment(request: Request):
-    pass
