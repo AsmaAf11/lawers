@@ -1,42 +1,42 @@
 from rest_framework import serializers
-from .models import lawyer, consultation, consultation_request, consultation_replay
+from .models import Lawyer, Consultation, Consultation_request, Consultation_replay
 from django.contrib.auth.models import User
 
 
-class LawyerSerializerView(serializers.ModelSerializer):
+class UserSerializerView(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username', 'email', 'contract_speciality']
+        fields = ['username', 'email']
 
 
-class lawyersSerializerView(serializers.ModelSerializer):
-    user = LawyerSerializerView()
+class LawyersSerializerView(serializers.ModelSerializer):
+    user = UserSerializerView()
 
     class Meta:
-        model = lawyer
-        fields = ['username', 'email', 'contract_speciality']
+        model = Lawyer
+        fields = '__all__'
         depth = 1
 
 
-class lawyerSerializer(serializers.ModelSerializer):
+class LawyerSerializer(serializers.ModelSerializer):
     class Meta:
-        model = lawyer
+        model = Lawyer
         fields = '__all__'
 
 
-class consultationSerializer(serializers.ModelSerializer):
+class ConsultationSerializer(serializers.ModelSerializer):
     class Meta:
-        model = consultation
+        model = Consultation
         fields = '__all__'
 
 
-class consultation_requestSerializer(serializers.ModelSerializer):
+class Consultation_requestSerializer(serializers.ModelSerializer):
     class Meta:
-        model = consultation_request
+        model = Consultation_request
         fields = '__all__'
 
 
-class consultation_replaySerializer(serializers.ModelSerializer):
+class Consultation_replaySerializer(serializers.ModelSerializer):
     class Meta:
-        model = consultation_replay
+        model = Consultation_replay
         fields = '__all__'
