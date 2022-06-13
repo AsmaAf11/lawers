@@ -28,10 +28,12 @@ Type of users: lawers,user
 ###Users
 - add thier personal informations
 - View lawers profiles.
-- search for lawerss by contract.
+- search for lawers by contract.
 - Edit thier profile.
 - request a consultation
-- pay for consultations
+- view the replay
+- list lawyers
+
 
 
 ###lawers
@@ -40,4 +42,6 @@ Type of users: lawers,user
 - add the price of consultation.
 - add years of experience
 - replay to consultation requests
+- list consultation requests
+
 
