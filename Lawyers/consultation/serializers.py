@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Lawyer, Consultation, Consultation_request, Consultation_replay
+from .models import Lawyer, Consultation_request, Consultation_replay, Users
 from django.contrib.auth.models import User
 
 
@@ -24,10 +24,39 @@ class LawyerSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class ConsultationSerializer(serializers.ModelSerializer):
+class UsersSerializer(serializers.ModelSerializer):
+
+
+    class Meta:
+        model = Users
+        fields = '__all__'
+
+
+class UsersSerializerView(serializers.ModelSerializer):
+    user = UserSerializerView()
+
+    class Meta:
+        model = Users
+        fields = '__all__'
+        depth = 1
+
+
+'''class ConsultationSerializer(serializers.ModelSerializer):
+    user = UserSerializerView()
+
     class Meta:
         model = Consultation
         fields = '__all__'
+        '''
+
+
+class ConsultationsSerializerView(serializers.ModelSerializer):
+    user = UserSerializerView()
+
+    class Meta:
+        model = Consultation_request
+        fields = '__all__'
+        depth = 1
 
 
 class Consultation_requestSerializer(serializers.ModelSerializer):

@@ -7,24 +7,32 @@ class Lawyer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     contract_speciality = models.CharField(max_length=50)
     years_of_experience = models.IntegerField()
-    consultation_price = models.IntegerField()
+    price = models.IntegerField()
 
     def __str__(self):
         return self.user.username
 
 
-class Consultation(models.Model):
+class Users(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+
+
+
+'''class Consultation(models.Model):
     lawyer = models.ForeignKey(Lawyer, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     price = models.IntegerField()
 
     def __str__(self):
         return str(self.user.username)
+ '''
 
 
 class Consultation_request(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    consultation = models.ForeignKey(Consultation, on_delete=models.CASCADE)
+    lawyer = models.ForeignKey(Lawyer, on_delete=models.CASCADE)
     content = models.TextField()
 
     def __str__(self):

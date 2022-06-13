@@ -9,8 +9,8 @@ from .serializers import *
 
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
 @authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
 def add_lawyer(request: Request):
     if not request.user.is_authenticated:
         return Response({"msg": "Not Allowed"}, status=status.HTTP_401_UNAUTHORIZED)
@@ -37,21 +37,20 @@ def list_lawyers(request: Request):
 
     dataResponse = {
         "msg": "List of Lawyers:",
-        "Lawyers": LawyerSerializer(instance=lawyers, many=True).data
+        "Lawyers": LawyersSerializerView(instance=lawyers, many=True).data
     }
 
     return Response(dataResponse)
 
 
-'''
 @api_view(['PUT'])
 @authentication_classes([JWTAuthentication])
 def update_lawyer(request: Request, lawyer_id):
     if not request.user.is_authenticated:
         return Response({"msg": "Not Allowed"}, status=status.HTTP_401_UNAUTHORIZED)
-    lawyers = lawyer.objects.get(id=lawyer_id)
+    lawyers = Lawyer.objects.get(id=lawyer_id)
 
-    updated_lawyer = lawyerSerializer(instance=lawyers, data=request.data)
+    updated_lawyer = LawyerSerializer(instance=lawyers, data=request.data)
     if updated_lawyer.is_valid():
         updated_lawyer.save()
         responseData = {
@@ -62,87 +61,94 @@ def update_lawyer(request: Request, lawyer_id):
     else:
         print(updated_lawyer.errors)
         return Response({"msg": "bad request, cannot update"}, status=status.HTTP_400_BAD_REQUEST)
-'''
-
-
-@api_view(['PUT'])
-@authentication_classes([JWTAuthentication])
-@permission_classes([IsAuthenticated])
-def update_lawyer(request: Request, lawyer_id):
-    lawyer_info = Lawyer.objects.get(id=lawyer_id)
-
-    updated_profile = LawyerSerializer(instance=lawyer_info, data=request.data)
-    if updated_profile.is_valid():
-        updated_profile.save()
-        responseData = {
-            "msg": "updated profile successfully"
-        }
-
-        return Response(responseData)
-    else:
-        print(updated_profile.errors)
-        return Response({"msg": "cannot update Profile !! "}, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
 @authentication_classes([JWTAuthentication])
 def delete_lawyer(request: Request, lawyer_id):
-    if not request.user.is_authenticated:
-        return Response({"msg": "Not Allowed"}, status=status.HTTP_401_UNAUTHORIZED)
     lawyer = Lawyer.objects.get(id=lawyer_id)
     lawyer.delete()
     return Response({"msg": "Deleted Successfully"})
 
 
-@api_view(['POST'])
+@api_view(['DELETE'])
 @permission_classes([IsAuthenticated])
 @authentication_classes([JWTAuthentication])
-def add_consultation(request: Request):
-    if not request.user.is_authenticated or not request.user.has_perm('consultation.add_consultation'):
-        return Response({"msg": "Not Allowed"}, status=status.HTTP_401_UNAUTHORIZED)
-
-    request.data.update(user=request.user.id)
-
-    new_consult = ConsultationSerializer(data=request.data)
-    if new_consult.is_valid():
-        new_consult.save()
-        dataResponse = {
-            "msg": "Created Successfully",
-            "lawyer": new_consult.data
-        }
-        return Response(dataResponse)
-    else:
-        print(new_consult.errors)
-        dataResponse = {"msg": "couldn't create a new consult"}
-        return Response(dataResponse, status=status.HTTP_400_BAD_REQUEST)
-
-
-@api_view(['GET'])
-def list_consultation(request: Request):
-    consultations = Consultation.objects.all()
-
-    dataResponse = {
-        "msg": "List of Consultations:",
-        "consultations": ConsultationSerializer(instance=consultations, many=True).data
-    }
-
-    return Response(dataResponse)
-
-
-@api_view(['DELETE'])
-@authentication_classes([JWTAuthentication])
-def delete_consultation(request: Request, consultation_id):
-    if not request.user.is_authenticated:
-        return Response({"msg": "Not Allowed"}, status=status.HTTP_401_UNAUTHORIZED)
-    con = Consultation.objects.get(id=consultation_id)
-    con.delete()
+def delete_user(request: Request, user_id):
+    lawyer = User.objects.get(id=user_id)
+    lawyer.delete()
     return Response({"msg": "Deleted Successfully"})
 
 
 @api_view(['POST'])
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
-def request_consultation(request: Request, consultation_id):
+def add_user(request: Request):
+    if not request.user.is_authenticated:
+        return Response({"msg": "Not Allowed"}, status=status.HTTP_401_UNAUTHORIZED)
+
+    request.data.update(user=request.user.id)
+
+    new_user = UsersSerializer(data=request.data)
+    if new_user.is_valid():
+        new_user.save()
+        dataResponse = {
+            "msg": "Created Successfully",
+            "user": new_user.data
+        }
+        return Response(dataResponse)
+    else:
+        print(new_user.errors)
+        dataResponse = {"msg": "couldn't create a new user"}
+        return Response(dataResponse, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+def list_users(request: Request):
+    users = Users.objects.all()
+
+    dataResponse = {
+        "msg": "List of Users:",
+        "Users": UsersSerializerView(instance=users, many=True).data
+    }
+
+    return Response(dataResponse)
+
+
+@api_view(['PUT'])
+@authentication_classes([JWTAuthentication])
+def update_users(request: Request, users_id):
+    if not request.user.is_authenticated:
+        return Response({"msg": "Not Allowed"}, status=status.HTTP_401_UNAUTHORIZED)
+    users = Users.objects.get(id=users_id)
+
+    updated_user = UsersSerializer(instance=users, data=request.data)
+    if updated_user.is_valid():
+        updated_user.save()
+        responseData = {
+            "msg": "updated successfully"
+        }
+
+        return Response(responseData)
+    else:
+        print(updated_user.errors)
+        return Response({"msg": "bad request, cannot update"}, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+@authentication_classes([JWTAuthentication])
+def delete_user(request: Request, users_id):
+    user = Users.objects.get(id=users_id)
+    user.delete()
+    return Response({"msg": "Deleted Successfully"})
+
+
+@api_view(['POST'])
+@authentication_classes([JWTAuthentication])
+#@permission_classes([IsAuthenticated])
+def request_consultation(request: Request, lawyer_id):
     print(request.user)
     if not request.user.is_authenticated or not request.user.has_perm('consultation.add_consultation_request'):
         return Response({"msg": "Not Allowed"}, status=status.HTTP_401_UNAUTHORIZED)
@@ -163,9 +169,34 @@ def request_consultation(request: Request, consultation_id):
         return Response(dataResponse, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['POST'])
-@permission_classes([IsAuthenticated])
+@api_view(['GET'])
 @authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
+def list_consultation(request: Request):
+    consultations = Consultation_request.objects.all()
+    lawyers = Lawyer.objects.all()
+
+    dataResponse = {
+        "msg": "List of Consultations:",
+        "consultations": ConsultationsSerializerView(instance=consultations, many=True).data,
+        # "lawyers info:": LawyersSerializerView(instance=lawyers, many=True).data
+    }
+
+    return Response(dataResponse)
+
+
+@api_view(['DELETE'])
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
+def delete_consultation_request(request: Request, consultation_request_id):
+    con = Consultation_request.objects.get(id=consultation_request_id)
+    con.delete()
+    return Response({"msg": "Deleted Successfully"})
+
+
+@api_view(['POST'])
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
 def replay_consultation(request: Request, consultation_request_id):
     if not request.user.is_authenticated or not request.user.has_perm('consultation.add_consultation_replay'):
         return Response({"msg": "Not Allowed"}, status=status.HTTP_401_UNAUTHORIZED)
@@ -184,24 +215,6 @@ def replay_consultation(request: Request, consultation_request_id):
         print(consultationReplay.errors)
         dataResponse = {"msg": "couldn't replay"}
         return Response(dataResponse, status=status.HTTP_400_BAD_REQUEST)
-
-
-'''
-@api_view(['GET'])
-def search_for_lawyers(request: Request):
-    if 'search' in request.query_params:
-        search_phrase = request.query_params['search']
-        lawyers = lawyer.objects.filter(contract_speciality__contains=search_phrase)
-    else:
-        lawyers = lawyer.objects.all()
-
-    responseData = {
-        "msg": "list of lawyers",
-        "lawyers:": lawyersSerializerView(instance=lawyers, many=True).data
-    }
-
-    return Response(responseData)
-'''
 
 
 @api_view(['GET'])
