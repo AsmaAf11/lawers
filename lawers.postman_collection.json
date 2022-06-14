@@ -1,0 +1,407 @@
+{
+	"info": {
+		"_postman_id": "387a220b-43de-40a5-93b7-c34201751ae2",
+		"name": "lawers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "lawers",
+			"item": [
+				{
+					"name": "add lawyer",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "update lawyers info",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU1NDQ4NDQwLCJpYXQiOjE2NTUwMTY0NDAsImp0aSI6Ijg1N2NhOWQ3NzhiZTQzNjQ4ZjQyZWRmNDBmNzAxYzlhIiwidXNlcl9pZCI6MX0.0pY-wf-AtGVWZlZLR-5WRDzY6R301im7JoI9igALC9Q",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU1NTUwNzA0LCJpYXQiOjE2NTUxMTg3MDQsImp0aSI6IjIzZjdmM2I1NGU3ZjRiMWY4NTRkYzA5MzBhOTI0Mzc0IiwidXNlcl9pZCI6Mn0.P3Z6FyYRD5N_-UwiSmknsToBzqSA2dtOcJ-cf0kwYYE",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"id\":2,\n        \"contract_speciality\": \"devorce\",\n        \"years_of_experience\": 5,\n        \"price\":600\n        \n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/update_lawyer/2/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"update_lawyer",
+								"2",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete lawyers",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/delete_lawyer/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"delete_lawyer",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "add user",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU1NTU1MTIyLCJpYXQiOjE2NTUxMjMxMjIsImp0aSI6ImI3NjQzMmJhYjNmMDQ3OGI4ODUwMGE2NTIxMDk5MTNhIiwidXNlcl9pZCI6MX0.Zvg_ONoaVvxrBhoDEHtWl5OOTpmaENZjzdb31XBzz3A",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"first_name\":\"hi\",\n    \"last_name\":\"hee\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/update_users/3/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"update_users",
+								"3",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU1NTUwMjcxLCJpYXQiOjE2NTUxMTgyNzEsImp0aSI6ImU2NmEyOTVkMWM0NDQ5NDc4ZTRiZDM5OGMyMDM3ZDRkIiwidXNlcl9pZCI6MX0.LP6QspjsDmJL0j82xNxQ9wO7V5KKCiznt3wHsRDl-Ow",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/delete_user/1/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"delete_user",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list lawyers",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "search for lawyers",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "list users",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "accounts",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "consultations",
+			"item": [
+				{
+					"name": "list consultatation requests(lawyer)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU1NTQ1NTc1LCJpYXQiOjE2NTUxMTM1NzUsImp0aSI6ImE5NGRmMmUzMDQ4ODQ0MWY4MjUxODg4Y2I3NzYzNjViIiwidXNlcl9pZCI6Nn0.9LC8JLnNknF0gFyczXuAOV1gdK_RQ-ZDw3CF5aAkcXs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/list_consultation",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"list_consultation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reply to consultaions(lawyer)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU1NTQ2MTg2LCJpYXQiOjE2NTUxMTQxODYsImp0aSI6IjkyMmFjNTA1ZDY1ZjQ3ZmQ5OTFmMTcwNWI5MGQ5NmQwIiwidXNlcl9pZCI6MX0.g82wJYCs8jpfzQGf1aYEg3V1UENJi3pO4nuh8uUb4rY",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":1,\n    \"consultation\":1,\n    \"replay\":\"bla bla\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/replay_consultation/3/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"replay_consultation",
+								"3",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "request a consultation(user)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU1NTQxNzExLCJpYXQiOjE2NTUxMDk3MTEsImp0aSI6ImJhZjg3MWQ1OTM0YTQ1MmQ4MjJmYjNhNWYwMjViZThjIiwidXNlcl9pZCI6Mn0.dVxTx20K1XxJdbhhp3kjsSDlDw6JkOs4CnopANsxdOU",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU1NDcwODY3LCJpYXQiOjE2NTUwMzg4NjcsImp0aSI6ImVmMjMxOGY1YWVlYTRlNzU5Mjg0OTNkMDRkYWI2YTFlIiwidXNlcl9pZCI6Mn0.u81Aw-jJ6A30nnfG12-kKntqMVZhJC2HXXl_OwKjpG8",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "Aut",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\":1,\n    \"lawyer\":6,\n    \"content\":\"dhuhciojcsmd\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/request_consultation/1/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"request_consultation",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete consultation request(user)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU1NTUwMjcxLCJpYXQiOjE2NTUxMTgyNzEsImp0aSI6ImU2NmEyOTVkMWM0NDQ5NDc4ZTRiZDM5OGMyMDM3ZDRkIiwidXNlcl9pZCI6MX0.LP6QspjsDmJL0j82xNxQ9wO7V5KKCiznt3wHsRDl-Ow",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/delete_consultation_request/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"delete_consultation_request",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view replay (users)",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
