@@ -1,1 +1,1 @@
-web: gunicorn lawers.wsgi
+web: gunicorn Lawyers.wsgi
